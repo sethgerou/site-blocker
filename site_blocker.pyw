@@ -11,7 +11,6 @@ website_list = ["www.gizmodo.com", "gizmodo.com", "www.engadget.com", "engadget.
 while True:
     # check to see whether the current time is between 8am on 4PM and not saturday or sunday.
     if (8 < dt.now().hour < 16) and dt.now().weekday() not in (5,6):
-        print("working hours - blocking gadget sites.")
         with open(hosts_path, "r+") as hosts:
             content = hosts.read()
             for site in website_list:
@@ -20,7 +19,6 @@ while True:
                 else:
                     hosts.write(redirect + " " + site + "\n")
     else:
-        print("fun hours - no sites blocked.")
         with open(hosts_path, "r+") as hosts:
             content = hosts.readlines()
             hosts.seek(0)
